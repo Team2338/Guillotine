@@ -19,7 +19,7 @@ public class DriveForward extends Command {
 
 	public DriveForward(double dist) {
 		this(dist, dist);
-		KP = .001;
+		KP = 0.1;
 	}
 
 	public DriveForward(double distLeft, double distRight) {

@@ -3,6 +3,7 @@ package team.gif.autocommands;
 import team.gif.Globals;
 import team.gif.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author PatrickUbelhor
@@ -17,7 +18,6 @@ public class ElevSetpoint extends Command {
     }
 
     protected void initialize() {
-    	Robot.elevator.enablePositionControl(Robot.elevator.getHeight() > position);
     	Globals.elevatorSetpoint = position;
     }
 
@@ -26,7 +26,12 @@ public class ElevSetpoint extends Command {
     }
 
     protected boolean isFinished() {
-        return Math.abs(Robot.elevator.getError()) < 100;
+    	if(Robot.elevator.getMin())
+    	{
+    		Robot.elevator.reset();
+    		return true;
+    	}
+        return (Math.abs(Robot.elevator.getError()) < 100);
     }
 
     protected void end() {

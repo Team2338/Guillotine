@@ -1,12 +1,12 @@
 package team.gif.subsystems;
 
 import team.gif.RobotMap;
-import team.gif.commands.HolderSet;
+import team.gif.commands.HolderClose;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * @author PatrickUbelhor
  */
 public class Holder extends Subsystem {
     
@@ -24,7 +24,7 @@ public class Holder extends Subsystem {
     }
 
     public void initDefaultCommand() {
-    	setDefaultCommand(new HolderSet());
+    	setDefaultCommand(new HolderClose());
     }
 }
 

@@ -3,7 +3,6 @@ package team.gif;
 
 import team.gif.autocommands.*;
 import team.gif.commands.TankDriveLinear;
-import team.gif.commands.TestAuto;
 import team.gif.subsystems.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -40,6 +39,7 @@ public class Robot extends IterativeRobot {
 	
 	Command autoCommand;
 	Command teleCommand;
+	Command elevUpdatePos;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -52,21 +52,19 @@ public class Robot extends IterativeRobot {
 //		server.startAutomaticCapture("cam0");
 		
 		compressor.start();
-		//autoCommand = new YellowToteStack();
-		//autoCommand = new AutoDrivePID(-1000, -1000);
-//		autoCommand = new AutonomousBase();
-//		autoCommand = new TestAuto();
 		teleCommand = new TankDriveLinear(.1);
+		elevUpdatePos = new UpdateElevPos();
 		
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Drive Forward", new DriveForward(-2000,2000));
-		autoChooser.addObject("Can Auto", new PullCans());
-		autoChooser.addObject("Solo Tote Stack", new ToteStackSolo());
-		autoChooser.addObject("Assisted Tote Stack", new ToteStackAssisted());
-		autoChooser.addObject("Simple Tote Stack", new ToteStackSimple());
-		autoChooser.addObject("Can and Tote Auto", new CanToteAuto());
-		autoChooser.addObject("Solo Can and Tote Stack", new CanToteStackSolo());
-		autoChooser.addObject("Assisted Can and Tote Stack", new CanToteStackAssisted());
+		autoChooser.addDefault("Drive Forward", new DriveForward(-4000));
+		autoChooser.addObject("Step Cans", new PullCans());
+		//autoChooser.addObject("Solo Tote Stack", new ToteStackSolo());
+		//autoChooser.addObject("Assisted Tote Stack", new ToteStackAssisted());
+		//autoChooser.addObject("Simple Tote Stack", new ToteStackSimple());
+		//autoChooser.addObject("Can and Tote Auto", new CanToteAuto());
+		//autoChooser.addObject("Solo Can and Tote Stack", new CanToteStackSolo());
+		//autoChooser.addObject("Assisted Can and Tote Stack", new CanToteStackAssisted());
+		autoChooser.addObject("Can to holder", new CanToHolder());
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }
 
@@ -88,17 +86,17 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	if (autoCommand != null)
-    	{
+    	if (autoCommand != null) {
     		autoCommand.cancel();
     	}
     	teleCommand.start();
+    	elevUpdatePos.start();
     }
 
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("LeftTicks:", chassis.getLeftDistance());
+        SmartDashboard.putNumber("leftTicks:", chassis.getLeftDistance());
         SmartDashboard.putNumber("rightTicks:", chassis.getRightDistance());
         SmartDashboard.putNumber("ElevHeight:", elevator.getHeight());
         SmartDashboard.putBoolean("ElevMin:", elevator.getMin());
@@ -106,6 +104,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("PusherMin:", pusher.getMin());
         SmartDashboard.putBoolean("PusherMax:", pusher.getMax());
         SmartDashboard.putNumber("iAccum", elevator.getIAccum());
+        SmartDashboard.putNumber("Error", elevator.getError());
+        SmartDashboard.putNumber("Setpoint", elevator.getSetpoint());
         //compressor.stop();
     }
     

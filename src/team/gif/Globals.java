@@ -24,17 +24,15 @@ public class Globals {
 	
 	// Elevator variables
 	public static final double elevatorP = 4;
-	public static final double elevatorI = 0.008;
-	public static final double elevatorD = 0.1;
-	public static final int elevatorIZone = 150;
-	public static final double elevDownP = 4;
-	public static final double elevDownI = 0.008;
-	public static final double elevDownD = 0.1;
-	public static final double elevatorRaiseSpeed = -0.6;
-	public static final double elevatorLowerSpeed = 0.5;
+	public static final double elevatorI = .008;
+	public static final double elevatorD = .1;
+	public static final int elevatorIZone = 1100;
+	public static final double elevDownP = 8;
+	public static final double elevDownI = 0;
+	public static final double elevDownD = 0;
 	public static final boolean elevatorMotorReversed = true;
 	public static final boolean elevatorEncoderReversed = false;
-	public static final double kElevatorLevel1 = 0;
+	public static final double kElevatorLevel1 = 5;
 	public static final double kElevatorLevel2 = 1000;
 	public static final double kElevatorLevel3 = 2100;
 	public static final double kElevatorLevel4 = 3200;
@@ -44,4 +42,5 @@ public class Globals {
 	// DON'T TOUCH THIS VALUE OR THE ROBOT WILL DIE:
 	public static double elevatorSetpoint = 0;
 	public static double elevManualPos = 0;
+	public static boolean holderOpen = true;
 }

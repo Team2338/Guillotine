@@ -1,7 +1,10 @@
 package team.gif;
 
 import team.gif.commands.*;
+import team.gif.autocommands.CanExtend;
+import team.gif.autocommands.CanRetract;
 import team.gif.autocommands.ElevSetpoint;
+import team.gif.autocommands.Stacro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -22,6 +25,8 @@ public class OI {
 	public static Button leftTrigger = new JoystickButton(leftStick, 1);
 	private static Button left2;
 	private static Button left3;
+	private static Button left4;
+	private static Button left5;
 	
 	private static Button rightTrigger;
 	private static Button right2;
@@ -39,11 +44,13 @@ public class OI {
 	private static Button aux8;
 	private static Button aux9;
 	private static Button aux10;
-	public static final Button aux11 = new JoystickButton(auxStick, 11);
+	private static Button aux11;
 	
 	public OI() {
 		left2 = new JoystickButton(leftStick, 2);
 		left3 = new JoystickButton(leftStick, 3);
+		left4 = new JoystickButton(leftStick, 4);
+		left5 = new JoystickButton(leftStick, 5);
 		
 		rightTrigger = new JoystickButton(rightStick, 1);
 		right2 = new JoystickButton(rightStick, 2);
@@ -61,9 +68,12 @@ public class OI {
 		aux8 = new JoystickButton(auxStick, 8);
 		aux9 = new JoystickButton(auxStick, 9);
 		aux10 = new JoystickButton(auxStick, 10);
+		aux11 = new JoystickButton(auxStick, 11);
 
-		left3.whileHeld(new PusherRetract());
 		left2.whileHeld(new PusherExtend());
+		left3.whileHeld(new PusherRetract());
+		left4.whenPressed(new CanExtend());
+		left5.whenPressed(new CanRetract());
 		
 		rightTrigger.whenPressed(new CollectorOpen());
 		rightTrigger.whenReleased(new CollectorClose());
@@ -73,19 +83,16 @@ public class OI {
 		right5.whileHeld(new CollectorRotate(true));
 		
 		auxTrigger.whenPressed(new ChopsticksClose());
-		aux2.whileHeld(new ElevatorLower());
-		aux3.whileHeld(new ElevatorRaise());
+		aux2.whenReleased(new ElevatorCoastDown());
+		aux3.whenReleased(new ElevatorCoastUp());
 		aux4.whenPressed(new ChopsticksOpen());
-		aux5.whenPressed(new OutriggersExtend());
-		aux5.whenReleased(new OutriggersRetract());
-		aux5.whenPressed(new HooksExtend());
-		aux5.whenReleased(new HooksRetract());
-		aux6.whenReleased(new ElevSetpoint(Globals.kElevatorLevel1));
-		aux7.whenReleased(new ElevSetpoint(Globals.kElevatorLevel2));
-		aux8.whenReleased(new ElevSetpoint(Globals.kElevatorLevel3));
-		aux9.whenReleased(new ElevSetpoint(Globals.kElevatorLevel4));
-		aux10.whenReleased(new ElevSetpoint(Globals.kElevatorLevel5));
-		
+		aux5.whenPressed(new Stacro());
+		aux6.whenPressed(new ElevSetpoint(Globals.kElevatorLevel1));
+		aux7.whenPressed(new ElevSetpoint(Globals.kElevatorLevel2));
+		aux8.whenPressed(new ElevSetpoint(Globals.kElevatorLevel3));
+		aux9.whenPressed(new ElevSetpoint(Globals.kElevatorLevel4));
+		aux10.whenPressed(new ElevSetpoint(Globals.kElevatorLevel5));
+		aux11.toggleWhenPressed(new HolderOpen());
 	}
 	
 }

@@ -19,11 +19,16 @@ public class Elevator extends Subsystem {
 	private static final CANTalon elevator = new CANTalon(RobotMap.elevator);
 	private static final DigitalInput elevatorMax = new DigitalInput(RobotMap.elevatorMax);
 	private static final DigitalInput elevatorMin = new DigitalInput(RobotMap.elevatorMin);
+	private static double prevSet = 0;
 	
 	public Elevator(){
 		super();
-		enablePositionControl(true);
+		enablePositionControl();
 		elevator.setPosition(0);
+	}
+	
+	public double getSetpoint(){
+		return elevator.getSetpoint();
 	}
 	
 	public ControlMode getMode() {
@@ -39,45 +44,55 @@ public class Elevator extends Subsystem {
 	}
 	
 	public boolean getMin() {
-		return elevatorMin.get();
+		return !elevatorMin.get();
 	}
 	
 	public boolean getMax() {
-		return elevatorMax.get();
+		return !elevatorMax.get();
 	}
 	
 	public double getHeight() {
 		return elevator.getEncPosition();
 	}
 	
-	public void enablePositionControl(boolean goingUp) {
+	public void enablePositionControl() {
 		elevator.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		elevator.changeControlMode(ControlMode.Position);
-		if (goingUp) { elevator.setPID(Globals.elevatorP, Globals.elevatorI, Globals.elevatorD); }
-		else { elevator.setPID(Globals.elevDownP, Globals.elevDownI, Globals.elevDownD); }
-		elevator.setIZone(Globals.elevatorIZone);
+//		elevator.setPID(Globals.elevatorP, Globals.elevatorI, Globals.elevatorD, 0, 0, 0, 0);
+		elevator.setPID(Globals.elevDownP, Globals.elevDownI, Globals.elevDownD);
 		elevator.reverseOutput(Globals.elevatorMotorReversed);
 		elevator.reverseSensor(Globals.elevatorEncoderReversed);
-		elevator.set(0);
-		elevator.enableControl();
+		drive(0);
 	}
 	
 	public void enableManualControl() {
 		elevator.changeControlMode(ControlMode.PercentVbus);
-		elevator.set(0);
+		drive(0);
 		elevator.enableControl();
 	}
 	
 	public void drive(double setpoint) {
-    	if (elevator.getControlMode() == ControlMode.Position) {
-        	SmartDashboard.putNumber("Error", elevator.getClosedLoopError());
-    	} else { SmartDashboard.putNumber("Error", -0.001); }
+//    	SmartDashboard.putNumber("Error", -0.001);
+//    	if (setpoint - elevator.getEncPosition() > 0){
+//    		elevator.setProfile(0);
+//    	}
+//    	else {
+//    		elevator.setProfile(1);
+//    	}
+    	if (setpoint != prevSet)
+    		elevator.ClearIaccum();
+    	prevSet = setpoint;
     	elevator.set(setpoint);
-    	SmartDashboard.putNumber("ElevCurrent", elevator.getOutputCurrent());
+//    	SmartDashboard.putNumber("ElevCurrent", elevator.getOutputCurrent());
     }
 	
     public void initDefaultCommand() {
         setDefaultCommand(new ElevatorStandby());
+    }
+    
+    public void reset() {
+    	elevator.setPosition(0);
+    	drive(0);
     }
     
 }

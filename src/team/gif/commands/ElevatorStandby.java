@@ -17,12 +17,8 @@ public class ElevatorStandby extends Command {
     }
 
     protected void initialize() {
-    	if (Robot.elevator.getMode() == CANTalon.ControlMode.Position) {
-    		position = Globals.elevatorSetpoint;
-    	} else {
-    		position = Globals.elevManualPos;
-    	}
-    	Robot.elevator.enablePositionControl(Robot.elevator.getHeight() > Globals.elevatorSetpoint);
+    	Robot.elevator.enablePositionControl();
+    	position = Globals.elevatorSetpoint;
     }
 
     protected void execute() {
