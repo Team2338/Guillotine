@@ -21,7 +21,11 @@ public class ElevatorCoastUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.drive(Robot.elevator.getHeight() + 325);
+    	if (Robot.elevator.getHeight() < 4700) {
+    		Robot.elevator.drive(Robot.elevator.getHeight() + 325);
+    	} else {
+    		Robot.elevator.drive(Robot.elevator.getHeight() + 50);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

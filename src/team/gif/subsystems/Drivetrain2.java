@@ -70,7 +70,7 @@ public class Drivetrain2 extends Subsystem {
 		return frontRight.getClosedLoopError();
 	}
 	
-	public void tankDrive(double left, double right){
+	public void tankDrive(double left, double right) {
 		driveLeft(left);
 		driveRight(right);
 	}
@@ -85,24 +85,19 @@ public class Drivetrain2 extends Subsystem {
     	rearRight.set(RobotMap.frontRight);
     }
     
-    public double getLeftDistance()
-    {
+    public double getLeftDistance() {
     	return frontLeft.getPosition();
     }
     
-    public double getRightDistance()
-    {
+    public double getRightDistance() {
     	return frontRight.getPosition();
     }
     
-    public void resetEncoders()
-    {
+    public void resetEncoders() {
     	frontRight.setPosition(0);
     	frontLeft.setPosition(0);
     }
     
-    public void initDefaultCommand() {
-//        setDefaultCommand(new TankDriveLinear(Globals.joystickDeadband));
-    }
+    public void initDefaultCommand() {}
 }
 

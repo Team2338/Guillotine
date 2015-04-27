@@ -4,6 +4,7 @@ import team.gif.commands.*;
 import team.gif.autocommands.CanExtend;
 import team.gif.autocommands.CanRetract;
 import team.gif.autocommands.ElevSetpoint;
+import team.gif.autocommands.QuickStack;
 import team.gif.autocommands.Stacro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -21,6 +22,7 @@ public class OI {
 	public static final Joystick leftStick = new Joystick(0);
 	public static final Joystick rightStick = new Joystick(1);
 	public static final Joystick auxStick = new Joystick(2);
+	public static final Joystick leonardo = new Joystick(3);
 	
 	public static Button leftTrigger = new JoystickButton(leftStick, 1);
 	private static Button left2;
@@ -46,6 +48,9 @@ public class OI {
 	private static Button aux10;
 	private static Button aux11;
 	
+	private static Button leo3;
+	private static Button leo4;
+	
 	public OI() {
 		left2 = new JoystickButton(leftStick, 2);
 		left3 = new JoystickButton(leftStick, 3);
@@ -69,11 +74,14 @@ public class OI {
 		aux9 = new JoystickButton(auxStick, 9);
 		aux10 = new JoystickButton(auxStick, 10);
 		aux11 = new JoystickButton(auxStick, 11);
+		
+		leo3 = new JoystickButton(leonardo, 3);
+		leo4 = new JoystickButton(leonardo, 4);
 
-		left2.whileHeld(new PusherExtend());
-		left3.whileHeld(new PusherRetract());
-		left4.whenPressed(new CanExtend());
-		left5.whenPressed(new CanRetract());
+		//left2.whenPressed(new fastriggerHard(1, 0.15));
+		//left3.whenPressed(new fastriggerHard(-1, 0.4));
+		left4.whenPressed(new CanRetract());
+		left5.whenPressed(new CanExtend());
 		
 		rightTrigger.whenPressed(new CollectorOpen());
 		rightTrigger.whenReleased(new CollectorClose());
@@ -84,15 +92,18 @@ public class OI {
 		
 		auxTrigger.whenPressed(new ChopsticksClose());
 		aux2.whenReleased(new ElevatorCoastDown());
-		aux3.whenReleased(new ElevatorCoastUp());
+		//aux3.whenReleased(new ElevatorCoastUp());
 		aux4.whenPressed(new ChopsticksOpen());
 		aux5.whenPressed(new Stacro());
-		aux6.whenPressed(new ElevSetpoint(Globals.kElevatorLevel1));
+		aux6.whileHeld(new QuickStack());
 		aux7.whenPressed(new ElevSetpoint(Globals.kElevatorLevel2));
 		aux8.whenPressed(new ElevSetpoint(Globals.kElevatorLevel3));
 		aux9.whenPressed(new ElevSetpoint(Globals.kElevatorLevel4));
 		aux10.whenPressed(new ElevSetpoint(Globals.kElevatorLevel5));
 		aux11.toggleWhenPressed(new HolderOpen());
+		
+		//leo3.whenPressed(new ElevBumpDown());
+		//leo4.whenPressed(new ElevBumpUp());
 	}
 	
 }

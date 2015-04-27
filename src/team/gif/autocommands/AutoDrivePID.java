@@ -56,7 +56,8 @@ public class AutoDrivePID extends Command {
     }
 
     protected boolean isFinished() {
-    	return (Math.abs(Robot.chassis.getLeftError()) < 100 && Math.abs(Robot.chassis.getRightError()) < 100);
+    	return (Math.abs(Robot.chassis.getLeftError()) < 100 && Math.abs(Robot.chassis.getRightError()) < 100 &&
+    			Timer.getFPGATimestamp() - initTime > 1);
     }
 
     protected void end() {

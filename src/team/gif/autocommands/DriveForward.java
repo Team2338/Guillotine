@@ -4,12 +4,12 @@ import team.gif.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveForward extends Command {
-	private double driveForwardSpeed = .2;
+	private double driveForwardSpeed = 0.4;//.2;
 	private double distanceLeft;
 	private double distanceRight;
 	private double errorLeft;
 	private double errorRight;
-	private final double TOLERANCE = 150;
+	private final double TOLERANCE = 400;
 	private double KP = .001;
 
 	public DriveForward() {
@@ -23,7 +23,7 @@ public class DriveForward extends Command {
 	}
 
 	public DriveForward(double distLeft, double distRight) {
-		KP = 1;
+		KP = 0.75;
 		requires(Robot.chassis);
 		distanceLeft = distLeft;
 		distanceRight = distRight;
@@ -35,7 +35,7 @@ public class DriveForward extends Command {
 	}
 
 	protected void execute() {
-		errorLeft = (distanceLeft - Robot.chassis.getLeftDistance());
+		errorLeft = (distanceLeft + Robot.chassis.getLeftDistance());
 		if (Math.abs(driveForwardSpeed * KP * errorLeft) >= driveForwardSpeed) {
 			Robot.chassis.driveLeft(driveForwardSpeed * (errorLeft/Math.abs(errorLeft)));
 		} else {

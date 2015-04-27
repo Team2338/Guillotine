@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /** Doin' Elevator Stuff....
  * @author Armaan
@@ -52,7 +51,7 @@ public class Elevator extends Subsystem {
 	}
 	
 	public double getHeight() {
-		return elevator.getEncPosition();
+		return elevator.getPosition();
 	}
 	
 	public void enablePositionControl() {

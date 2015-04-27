@@ -2,7 +2,6 @@ package team.gif.commands;
 
 import team.gif.Globals;
 import team.gif.Robot;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

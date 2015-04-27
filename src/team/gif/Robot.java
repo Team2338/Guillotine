@@ -2,6 +2,7 @@
 package team.gif;
 
 import team.gif.autocommands.*;
+import team.gif.commands.ChopsticksOpen;
 import team.gif.commands.TankDriveLinear;
 import team.gif.subsystems.*;
 import edu.wpi.first.wpilibj.Compressor;
@@ -23,7 +24,7 @@ public class Robot extends IterativeRobot {
 
 	public static final Elevator elevator = new Elevator();
 	public static final Drivetrain2 chassis = new Drivetrain2();
-	public static final Pusher pusher = new Pusher();
+	public static final Fastrigger fastrigger = new Fastrigger();
 	public static final Chopsticks chopsticks = new Chopsticks();
 	public static final CollectorMotors collectorMotors = new CollectorMotors();
 	public static final CollectorPneumatics collectorPneumo = new CollectorPneumatics();
@@ -35,11 +36,9 @@ public class Robot extends IterativeRobot {
 	public SendableChooser autoChooser;
 	
 	private static Compressor compressor = new Compressor(1);
-//	CameraServer server;
 	
 	Command autoCommand;
 	Command teleCommand;
-	Command elevUpdatePos;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -47,30 +46,27 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-//		server = CameraServer.getInstance();
-//		server.setQuality(10);
-//		server.startAutomaticCapture("cam0");
 		
-		compressor.start();
 		teleCommand = new TankDriveLinear(.1);
-		elevUpdatePos = new UpdateElevPos();
 		
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Drive Forward", new DriveForward(-4000));
+		autoChooser.addDefault("No autonomous", new AntiAuto());
+		autoChooser.addObject("Drive Forward", new DriveForward(-4000));
 		autoChooser.addObject("Step Cans", new PullCans());
-		//autoChooser.addObject("Solo Tote Stack", new ToteStackSolo());
+		autoChooser.addObject("WAIT STEP CANS", new WAITSTEPCAN());
 		//autoChooser.addObject("Assisted Tote Stack", new ToteStackAssisted());
 		//autoChooser.addObject("Simple Tote Stack", new ToteStackSimple());
-		//autoChooser.addObject("Can and Tote Auto", new CanToteAuto());
-		//autoChooser.addObject("Solo Can and Tote Stack", new CanToteStackSolo());
-		//autoChooser.addObject("Assisted Can and Tote Stack", new CanToteStackAssisted());
-		autoChooser.addObject("Can to holder", new CanToHolder());
+		autoChooser.addObject("Can-to-holder basic", new CanToHolderBasic());
+		autoChooser.addObject("CanHolder to auto", new CanToHolder());
+		//autoChooser.addObject("CanHolder to landfill", new CanHolderToLandfill());
+		autoChooser.addObject("TurnLeft90", new AutoDrivePID(-1000, 1000));
+		//autoChooser.addObject("Gotta go fast", new GottaGoFast());
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
         //if (autonomousCommand != null) autonomousCommand.start();
+    	(new ChopsticksOpen()).start();
     	autoCommand = (Command) autoChooser.getSelected();
     	autoCommand.start();
     }
@@ -79,10 +75,9 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("leftTicks:", chassis.getLeftDistance());
         SmartDashboard.putNumber("rightTicks:", chassis.getRightDistance());
+        SmartDashboard.putData(chassis);
 //        SmartDashboard.putNumber("DriveErrorLeft", chassis.getLeftError());
 //        SmartDashboard.putNumber("DriveErrorRight", chassis.getRightError());
-//        SmartDashboard.putNumber("Left Setpoint", chassis.getLeftSetpoint());
-//        SmartDashboard.putNumber("Right Setpoint", chassis.getRightSetpoint());
     }
 
     public void teleopInit() {
@@ -90,7 +85,6 @@ public class Robot extends IterativeRobot {
     		autoCommand.cancel();
     	}
     	teleCommand.start();
-    	elevUpdatePos.start();
     }
 
 
@@ -101,8 +95,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("ElevHeight:", elevator.getHeight());
         SmartDashboard.putBoolean("ElevMin:", elevator.getMin());
         SmartDashboard.putBoolean("ElevMax:", elevator.getMax());
-        SmartDashboard.putBoolean("PusherMin:", pusher.getMin());
-        SmartDashboard.putBoolean("PusherMax:", pusher.getMax());
+        SmartDashboard.putBoolean("PusherMin:", fastrigger.getMin());
+        SmartDashboard.putBoolean("PusherMax:", fastrigger.getMax());
+        SmartDashboard.putBoolean("CollectorLimit", collectorMotors.getLimit());
         SmartDashboard.putNumber("iAccum", elevator.getIAccum());
         SmartDashboard.putNumber("Error", elevator.getError());
         SmartDashboard.putNumber("Setpoint", elevator.getSetpoint());

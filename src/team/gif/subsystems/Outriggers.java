@@ -6,17 +6,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Outriggers extends Subsystem {
     
-    public static final Solenoid outriggersA = new Solenoid(0, RobotMap.outriggersA);
-    public static final Solenoid outriggersB = new Solenoid(1, RobotMap.outriggersB);
+    public static final Solenoid outriggersA = new Solenoid(1, RobotMap.outriggersA);
+    public static final Solenoid outriggersB = new Solenoid(0, RobotMap.outriggersB);
     
     public void lower() {
-    	outriggersA.set(false);
-    	outriggersB.set(true);
+    	outriggersB.set(false);
+    	outriggersA.set(true);
     }
     
     public void raise() {
-    	outriggersB.set(false);
-    	outriggersA.set(true);
+    	outriggersA.set(false);
+    	outriggersB.set(true);
     }
 
     public void initDefaultCommand() {}

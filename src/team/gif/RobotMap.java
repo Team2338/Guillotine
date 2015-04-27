@@ -7,7 +7,7 @@ package team.gif;
 public class RobotMap {
 	
 	// CAN addresses
-    public static int totePusher = 1;
+    public static int leftRigger = 1;
     public static int collectorRight = 2;
     public static int collectorLeft = 3;
     public static int elevator = 4;
@@ -15,24 +15,24 @@ public class RobotMap {
     public static int rearRight = 6;
     public static int frontLeft = 7;
     public static int rearLeft = 8;
+    public static int rightRigger = 9;
     
     // DIO ports
-    public static int elevatorMax = 0;
-    public static int elevatorMin = 1;
-    public static int pusherMax = 3;
-    public static int pusherMin = 2;
-    public static int elevatorA = 4;
-    public static int elevatorB = 5;
+    public static int elevatorMin = 0;
+    public static int elevatorMax = 1;
+    public static int pusherMax = 2;
+    public static int pusherMin = 3;
+    public static int collectorLimit = 4;
     
     // Relay ports (solenoids)
     public static int collectorA = 0;
     public static int collectorB = 0;
-    public static int hooksA = 1;
-    public static int hooksB = 1;
+    public static int hooksA = 3;
+    public static int hooksB = 3;
     public static int holderA = 2;
     public static int holderB = 2;
-    public static int outriggersA = 3;
-    public static int outriggersB = 3;
+    public static int outriggersA = 1;
+    public static int outriggersB = 1;
     public static int chopSticksA = 4;
     public static int chopSticksB = 4;
 }

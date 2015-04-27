@@ -2,8 +2,8 @@ package team.gif.autocommands;
 
 import team.gif.Globals;
 import team.gif.Robot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author PatrickUbelhor
@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ElevSetpoint extends Command {
 
 	private double position;
+	private double initTime;
 	
     public ElevSetpoint(double setpoint) {
         requires(Robot.elevator);
@@ -19,6 +20,7 @@ public class ElevSetpoint extends Command {
 
     protected void initialize() {
     	Globals.elevatorSetpoint = position;
+    	initTime = Timer.getFPGATimestamp();
     }
 
     protected void execute() {
@@ -31,7 +33,7 @@ public class ElevSetpoint extends Command {
     		Robot.elevator.reset();
     		return true;
     	}
-        return (Math.abs(Robot.elevator.getError()) < 100);
+        return (Math.abs(Robot.elevator.getError()) < 100 && Timer.getFPGATimestamp() - initTime > 0.01);
     }
 
     protected void end() {

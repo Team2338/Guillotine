@@ -13,34 +13,28 @@ public class Globals {
 	public static final double joystickDeadband = 0.1;
 	
 	// Drivetrain variables
-	public static final double drivetrainP = 0.3;
+	public static final double drivetrainP = 1;
 	public static final double drivetrainI = 0.0001;
 	public static final double drivetrainD = 0.0;
 	public static final int drivetrainIZone = 1000;
-	public static final boolean leftEncoderReversed = true;
+	public static final boolean leftEncoderReversed = false;
 	public static final boolean rightEncoderReversed = true;
-	public static final boolean leftMotorReversed = false;
-	public static final boolean rightMotorReversed = false;
+	public static final boolean leftMotorReversed = true;
+	public static final boolean rightMotorReversed = true;
 	
 	// Elevator variables
-	public static final double elevatorP = 4;
-	public static final double elevatorI = .008;
-	public static final double elevatorD = .1;
-	public static final int elevatorIZone = 1100;
 	public static final double elevDownP = 8;
 	public static final double elevDownI = 0;
 	public static final double elevDownD = 0;
 	public static final boolean elevatorMotorReversed = true;
-	public static final boolean elevatorEncoderReversed = false;
-	public static final double kElevatorLevel1 = 5;
+	public static final boolean elevatorEncoderReversed = true;
+	public static final double kElevatorLevel1 = 12;
 	public static final double kElevatorLevel2 = 1000;
 	public static final double kElevatorLevel3 = 2100;
 	public static final double kElevatorLevel4 = 3200;
 	public static final double kElevatorLevel5 = 4300;
-	public static final double kElevatorBump = 400;
 	
 	// DON'T TOUCH THIS VALUE OR THE ROBOT WILL DIE:
 	public static double elevatorSetpoint = 0;
-	public static double elevManualPos = 0;
-	public static boolean holderOpen = true;
+	//public static boolean chopsticksOpen = true;
 }

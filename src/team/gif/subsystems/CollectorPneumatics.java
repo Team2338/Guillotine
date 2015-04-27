@@ -1,7 +1,6 @@
 package team.gif.subsystems;
 
 import team.gif.RobotMap;
-import team.gif.commands.CollectorClose;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
