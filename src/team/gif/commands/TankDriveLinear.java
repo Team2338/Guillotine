@@ -16,9 +16,7 @@ public class TankDriveLinear extends Command {
         dBand = deadband;
     }
 
-    protected void initialize() {
-    	Robot.chassis.enableManualControl();
-    }
+    protected void initialize() {}
 
     protected void execute() {
     	if (Math.abs(OI.leftStick.getY()) > dBand) { Robot.chassis.driveLeft(OI.leftStick.getY()); }
@@ -32,9 +30,8 @@ public class TankDriveLinear extends Command {
         return false;
     }
 
-    protected void end() {
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
+    
 }

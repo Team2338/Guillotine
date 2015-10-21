@@ -3,7 +3,6 @@ package team.gif.autocommands;
 import team.gif.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author PatrickUbelhor
@@ -34,18 +33,14 @@ public class QuickStack extends Command {
     			toggle = false;
     		}
     	}
-    	SmartDashboard.putBoolean("toggle", toggle);
-    	SmartDashboard.putBoolean("StacroRunning", stacro.isRunning());
     }
 
     protected boolean isFinished() {
         return false;
     }
 
-    protected void end() {
-    	
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
+    
 }

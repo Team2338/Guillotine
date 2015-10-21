@@ -30,15 +30,14 @@ public class ElevSetpoint extends Command {
     protected boolean isFinished() {
     	if(Robot.elevator.getMin())
     	{
-    		Robot.elevator.reset();
+    		Robot.elevator.resetEncoder();
     		return true;
     	}
         return (Math.abs(Robot.elevator.getError()) < 100 && Timer.getFPGATimestamp() - initTime > 0.01);
     }
 
-    protected void end() {
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
+    
 }

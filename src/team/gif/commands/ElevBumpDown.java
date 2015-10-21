@@ -5,7 +5,7 @@ import team.gif.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author PatrickUbelhor
  */
 public class ElevBumpDown extends Command {
 
@@ -18,19 +18,14 @@ public class ElevBumpDown extends Command {
     	Globals.elevatorSetpoint = Robot.elevator.getSetpoint();
     }
 
-    protected void execute() {
-    }
+    protected void execute() {}
 
     protected boolean isFinished() {
         return true;
     }
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+    protected void end() {}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
+    
 }

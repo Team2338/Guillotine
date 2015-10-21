@@ -5,7 +5,7 @@ import team.gif.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * @author Armaan
+ * @author PatrickUbelhor
  */
 public class ElevatorStandby extends Command {
 	
@@ -28,9 +28,8 @@ public class ElevatorStandby extends Command {
         return false;
     }
 
-    protected void end() {
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
+    
 }

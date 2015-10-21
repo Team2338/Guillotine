@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Chopsticks extends Subsystem {
     
     private static final Solenoid chopsticksA = new Solenoid(0, RobotMap.chopSticksA);
-    private static final Solenoid chopsticksB = new Solenoid(1, RobotMap.chopSticksB);
+    private static final Solenoid chopsticksB = new Solenoid(0, RobotMap.chopSticksB);
     
     public void open() {
     	chopsticksA.set(false);
@@ -23,5 +23,5 @@ public class Chopsticks extends Subsystem {
     }
 
     public void initDefaultCommand() {}
+    
 }
-

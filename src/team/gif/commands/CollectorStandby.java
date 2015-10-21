@@ -12,20 +12,18 @@ public class CollectorStandby extends Command {
         requires(Robot.collectorMotors);
     }
 
-    protected void initialize() {
-    }
+    protected void initialize() {}
 
     protected void execute() {
     	Robot.collectorMotors.drive(0.0, 0.0);
     }
 
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
-    protected void end() {
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
+    
 }

@@ -16,19 +16,14 @@ public class ChopsticksOpen extends Command {
     	Robot.chopsticks.open();
     }
 
-    protected void execute() {
-    	
-    }
+    protected void execute() {}
 
     protected boolean isFinished() {
         return true;
     }
 
-    protected void end() {
-    	
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    	
-    }
+    protected void interrupted() {}
+    
 }

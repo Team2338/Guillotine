@@ -5,7 +5,7 @@ import team.gif.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author PatrickUbelhor
  */
 public class ElevBumpUp extends Command {
 
@@ -13,8 +13,7 @@ public class ElevBumpUp extends Command {
         requires(Robot.elevator);
     }
 
-    protected void initialize() {
-    }
+    protected void initialize() {}
     
     protected void execute() {
     	Robot.elevator.drive(Robot.elevator.getHeight() + 200);
@@ -25,9 +24,8 @@ public class ElevBumpUp extends Command {
         return true;
     }
 
-    protected void end() {
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
+    
 }

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
- *
+ * @author PatrickUbelhor
  */
 public class Stacro extends CommandGroup {
     

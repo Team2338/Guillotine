@@ -3,7 +3,7 @@ package team.gif.autocommands;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author PatrickUbelhor
  */
 public class AntiAuto extends Command {
 
@@ -30,4 +30,5 @@ public class AntiAuto extends Command {
     protected void interrupted() {
     	// DO NOTHING
     }
+    
 }

@@ -5,7 +5,7 @@ import team.gif.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author PatrickUbelhor
  */
 public class CollectorRotate extends Command {
 
@@ -17,8 +17,7 @@ public class CollectorRotate extends Command {
         
     }
 
-    protected void initialize() {
-    }
+    protected void initialize() {}
 
     protected void execute() {
     	if (rotDir) {
@@ -29,12 +28,11 @@ public class CollectorRotate extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
-    protected void end() {
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
+    
 }

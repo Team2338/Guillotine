@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * @author PatrickUbelhor
  */
 public class CollectorPneumatics extends Subsystem {
 	
 	//A extends, B retracts
     private static final Solenoid collectorA = new Solenoid(0, RobotMap.collectorA);
-    private static final Solenoid collectorB = new Solenoid(1, RobotMap.collectorB);
+    private static final Solenoid collectorB = new Solenoid(0, RobotMap.collectorB);
 
     public void close() {
     	collectorA.set(false);
@@ -24,5 +24,5 @@ public class CollectorPneumatics extends Subsystem {
     }
     
     public void initDefaultCommand() {}
+    
 }
-

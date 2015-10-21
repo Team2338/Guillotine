@@ -1,7 +1,6 @@
 package team.gif.subsystems;
 
 import team.gif.RobotMap;
-import team.gif.commands.CollectorStandby;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -38,8 +37,6 @@ public class CollectorMotors extends Subsystem {
     	right.set(rightSpeed);
     }
 
-    public void initDefaultCommand() {
-        setDefaultCommand(new CollectorStandby());
-    }
+    public void initDefaultCommand() {}
+    
 }
-

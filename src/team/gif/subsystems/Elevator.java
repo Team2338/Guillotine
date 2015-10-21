@@ -57,7 +57,6 @@ public class Elevator extends Subsystem {
 	public void enablePositionControl() {
 		elevator.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		elevator.changeControlMode(ControlMode.Position);
-//		elevator.setPID(Globals.elevatorP, Globals.elevatorI, Globals.elevatorD, 0, 0, 0, 0);
 		elevator.setPID(Globals.elevDownP, Globals.elevDownI, Globals.elevDownD);
 		elevator.reverseOutput(Globals.elevatorMotorReversed);
 		elevator.reverseSensor(Globals.elevatorEncoderReversed);
@@ -82,16 +81,15 @@ public class Elevator extends Subsystem {
     		elevator.ClearIaccum();
     	prevSet = setpoint;
     	elevator.set(setpoint);
-//    	SmartDashboard.putNumber("ElevCurrent", elevator.getOutputCurrent());
+    }
+	
+	public void resetEncoder() {
+    	elevator.setPosition(0);
+    	drive(0);
     }
 	
     public void initDefaultCommand() {
         setDefaultCommand(new ElevatorStandby());
-    }
-    
-    public void reset() {
-    	elevator.setPosition(0);
-    	drive(0);
     }
     
 }

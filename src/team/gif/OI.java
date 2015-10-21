@@ -1,14 +1,14 @@
 package team.gif;
 
 import team.gif.commands.*;
-import team.gif.autocommands.CanExtend;
-import team.gif.autocommands.CanRetract;
 import team.gif.autocommands.ElevSetpoint;
 import team.gif.autocommands.QuickStack;
 import team.gif.autocommands.Stacro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+@SuppressWarnings("unused")
 
 /**
  * @author PatrickUbelhor
@@ -77,30 +77,26 @@ public class OI {
 		
 		leo3 = new JoystickButton(leonardo, 3);
 		leo4 = new JoystickButton(leonardo, 4);
-
-		//left2.whenPressed(new fastriggerHard(1, 0.15));
-		//left3.whenPressed(new fastriggerHard(-1, 0.4));
-		left4.whenPressed(new CanRetract());
-		left5.whenPressed(new CanExtend());
 		
 		rightTrigger.whenPressed(new CollectorOpen());
 		rightTrigger.whenReleased(new CollectorClose());
-		right2.whileHeld(new CollectorReceive());
-		right3.whileHeld(new CollectorEject());
-		right4.whileHeld(new CollectorRotate(false));
-		right5.whileHeld(new CollectorRotate(true));
+		right2.whenPressed(new CollectorReceive());
+		right2.whenReleased(new CollectorStandby());
+		right3.whenPressed(new CollectorEject());
+		right3.whenReleased(new CollectorStandby());
+		right4.whenPressed(new CollectorRotate(false));
+		right4.whenReleased(new CollectorStandby());
+		right5.whenPressed(new CollectorRotate(true));
+		right5.whenReleased(new CollectorStandby());
 		
 		auxTrigger.whenPressed(new ChopsticksClose());
 		aux2.whenReleased(new ElevatorCoastDown());
-		//aux3.whenReleased(new ElevatorCoastUp());
+		aux3.whenReleased(new ElevatorCoastUp());
 		aux4.whenPressed(new ChopsticksOpen());
 		aux5.whenPressed(new Stacro());
 		aux6.whileHeld(new QuickStack());
 		aux7.whenPressed(new ElevSetpoint(Globals.kElevatorLevel2));
 		aux8.whenPressed(new ElevSetpoint(Globals.kElevatorLevel3));
-		aux9.whenPressed(new ElevSetpoint(Globals.kElevatorLevel4));
-		aux10.whenPressed(new ElevSetpoint(Globals.kElevatorLevel5));
-		aux11.toggleWhenPressed(new HolderOpen());
 		
 		//leo3.whenPressed(new ElevBumpDown());
 		//leo4.whenPressed(new ElevBumpUp());
