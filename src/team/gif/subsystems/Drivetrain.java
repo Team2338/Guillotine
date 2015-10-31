@@ -73,6 +73,18 @@ public class Drivetrain extends Subsystem {
     	frontLeft.setPosition(0);
     }
     
+    public double getLeftVelocity() {
+    	return frontLeft.getSpeed() * 10;
+    }
+    
+    public double getRightVelocity() {
+    	return frontRight.getSpeed() * 10;
+    }
+    
+    public double getLeftCurrent() {
+    	return frontLeft.getOutputCurrent();
+    }
+    
     public void initDefaultCommand() {}
     
 }

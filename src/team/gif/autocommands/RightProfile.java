@@ -104,7 +104,9 @@ public class RightProfile extends Command {
         return done;
     }
 
-    protected void end() {}
+    protected void end() {
+    	Robot.chassis.driveRight(0);
+    }
 
     protected void interrupted() {}
     
@@ -112,7 +114,7 @@ public class RightProfile extends Command {
 		if (velocity > 1) {
 			System.err.println("Attempting to go above 100% speed!");
 		}
-		Robot.chassis.driveRight(-velocity / Globals.drivetrainMaxVel);
+		Robot.chassis.driveRight(-velocity / Globals.drivetrainMaxVelRight);
 	}
 	
 	private class PIDCalculator {

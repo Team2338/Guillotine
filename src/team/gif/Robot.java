@@ -7,6 +7,7 @@ import team.gif.commands.TankDriveLinear;
 import team.gif.subsystems.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -49,6 +50,8 @@ public class Robot extends IterativeRobot {
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No autonomous", new AntiAuto());
 		autoChooser.addObject("Kinematic", new KinematicTesting());
+		autoChooser.addObject("Testing", new Testing());
+		autoChooser.addObject("Slolam ", new AroundCones());
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }
     
@@ -133,6 +136,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Error", elevator.getError());
         SmartDashboard.putNumber("Setpoint", elevator.getSetpoint());
         SmartDashboard.putBoolean("CompressorRunning", compressor.enabled());
+        SmartDashboard.putNumber("LeftVel ", chassis.getLeftVelocity());
+        SmartDashboard.putNumber("RightVel ", chassis.getRightVelocity());
+        SmartDashboard.putNumber("LeftCurrent ", chassis.getLeftCurrent());
     }
     
 }

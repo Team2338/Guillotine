@@ -18,8 +18,9 @@ public class Globals {
 	public static final boolean frontRightMotorReversed = true;
 	public static final boolean rearLeftMotorReversed = false;
 	
-	public static final double robotWidth = 1305; // In encoder ticks. ESTIMATED.
-	public static final double drivetrainMaxVel = 8000; // Ticks/sec. ESTIMATED.
+	public static final double robotWidth = 1390; // In encoder ticks. ESTIMATED.
+	public static final double drivetrainMaxVelLeft = 8760; // Ticks/sec. ESTIMATED.
+	public static final double drivetrainMaxVelRight = 8760; // Ticks/sec. ESTIMATED.
 	public static final double motionProfilerP = 0.0;
 	public static final double motionProfilerI = 0.0;
 	public static final double motionProfilerD = 0.0;

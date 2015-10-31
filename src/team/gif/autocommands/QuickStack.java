@@ -13,9 +13,7 @@ public class QuickStack extends Command {
 	private Command stacro;
 	private double initTime = 0;
 
-    public QuickStack() {
-    	
-    }
+    public QuickStack() {}
 
     protected void initialize() {
     	stacro = new Stacro();

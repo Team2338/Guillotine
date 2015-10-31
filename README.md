@@ -1,2 +1,2 @@
 # 2015RobotCode
-The OFFICIAL code for the 2015 bot
+The code for the 2015 practice robot.
