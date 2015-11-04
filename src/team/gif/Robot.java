@@ -48,6 +48,7 @@ public class Robot extends IterativeRobot {
 		
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No autonomous", new AntiAuto());
+		autoChooser.addDefault("Dynamatics", new LeftDynamatic(2000, Globals.drivetrainMaxVelLeft / 2));
 		autoChooser.addObject("Testing", new Testing());
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * @author PatrickUbelhor
  */
-public class LeftKinematic extends Command {
+public class LeftDynamatic extends Command {
 	
 	private double dist;
 	private double vel;
@@ -16,7 +16,7 @@ public class LeftKinematic extends Command {
 	private double initTime = 0;
 	private boolean isFinished = false;
 
-    public LeftKinematic(double dist, double vel) {
+    public LeftDynamatic(double dist, double vel) {
     	if (vel == 0) throw new RuntimeException("The value of \'vel\' cannot be 0!");
     	
     	if ((dist < 0 && vel > 0) || (dist > 0 && vel < 0)) vel = -vel;
