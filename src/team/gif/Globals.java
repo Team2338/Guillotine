@@ -25,6 +25,8 @@ public class Globals {
 	public static final double motionProfilerI = 0.0;
 	public static final double motionProfilerD = 0.0;
 	
+	public static final double kinematicTolerance = 100;
+	
 	// Elevator variables
 	public static final double elevDownP = 8;
 	public static final double elevDownI = 0;
