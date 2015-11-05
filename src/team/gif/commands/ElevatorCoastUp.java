@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ElevatorCoastUp extends Command {
 	
-	private static double topVal = 7992;
+	private static double topVal = 3500;
 
 	public ElevatorCoastUp() {
     	requires(Robot.elevator);

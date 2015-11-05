@@ -16,10 +16,10 @@ public class ElevatorCoastDown extends Command {
     protected void initialize() {}
 
     protected void execute() {
-    	if (Robot.elevator.getHeight() > 250) {
+    	if (Robot.elevator.getHeight() > 400) {
     		Robot.elevator.drive(Robot.elevator.getHeight() - 325);
     	} else {
-    		Robot.elevator.drive(Robot.elevator.getHeight() - 150);
+    		Robot.elevator.drive(Robot.elevator.getHeight() - 100);
     	}
     }
 

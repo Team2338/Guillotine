@@ -13,12 +13,12 @@ public class ElevBumpDown extends Command {
         requires(Robot.elevator);
     }
 
-    protected void initialize() {
+    protected void initialize() {}
+
+    protected void execute() {
     	Robot.elevator.drive(Robot.elevator.getHeight() - 200);
     	Globals.elevatorSetpoint = Robot.elevator.getSetpoint();
     }
-
-    protected void execute() {}
 
     protected boolean isFinished() {
         return true;

@@ -51,6 +51,7 @@ public class OI {
 	private static Button leo3;
 	private static Button leo4;
 	
+	
 	public OI() {
 		left2 = new JoystickButton(leftStick, 2);
 		left3 = new JoystickButton(leftStick, 3);
